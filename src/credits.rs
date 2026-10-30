@@ -4,9 +4,9 @@
 /// admins receive an email alert. Changed from 50%, 80% and 100% to 75% and 90%.
 pub const CREDIT_ALERT_THRESHOLDS: [u8; 2] = [75, 90];
 
-/// New: a hard spend cap. Once a workspace has used 100% of its committed
-/// monthly credits, AI features (Code Suggestions and Duo Chat) are blocked
-/// until an admin raises the cap or the next billing cycle starts.
+/// A hard spend cap. Once a workspace has used 100% of its committed monthly
+/// credits, Code Suggestions are blocked until an admin raises the cap or the
+/// next billing cycle starts. Duo Chat is no longer blocked at the cap.
 pub const SPEND_CAP_PERCENT: u8 = 100;
 
 /// New: unused credits roll over into the next billing cycle, up to 25% of

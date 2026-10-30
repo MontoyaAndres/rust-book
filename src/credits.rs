@@ -9,6 +9,16 @@ pub const CREDIT_ALERT_THRESHOLDS: [u8; 2] = [75, 90];
 /// until an admin raises the cap or the next billing cycle starts.
 pub const SPEND_CAP_PERCENT: u8 = 100;
 
+/// New: unused credits roll over into the next billing cycle, up to 25% of
+/// the workspace's committed monthly credits. Anything above that expires.
+pub const ROLLOVER_MAX_PERCENT: u8 = 25;
+
+/// Credits carried into the next cycle from this one.
+pub fn rollover(used: u64, committed: u64) -> u64 {
+    let unused = committed.saturating_sub(used);
+    unused.min(committed * u64::from(ROLLOVER_MAX_PERCENT) / 100)
+}
+
 fn percent_used(used: u64, committed: u64) -> u64 {
     if committed == 0 {
         return 100;

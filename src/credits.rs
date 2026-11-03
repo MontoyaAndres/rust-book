@@ -4,6 +4,10 @@
 /// admins receive an email alert. Changed from 50%, 80% and 100% to 75% and 90%.
 pub const CREDIT_ALERT_THRESHOLDS: [u8; 2] = [75, 90];
 
+/// New: credit alerts also go to the workspace's billing contact, not only to
+/// its admins, so whoever pays sees the 75% and 90% warnings too.
+pub const ALERT_BILLING_CONTACT: bool = true;
+
 /// A hard spend cap. Once a workspace has used 100% of its committed monthly
 /// credits, Code Suggestions are blocked until an admin raises the cap or the
 /// next billing cycle starts. Duo Chat is no longer blocked at the cap.
